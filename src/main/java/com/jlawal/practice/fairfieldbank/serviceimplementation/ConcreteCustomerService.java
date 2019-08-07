@@ -3,7 +3,7 @@ package com.jlawal.practice.fairfieldbank.serviceimplementation;
 import com.jlawal.practice.fairfieldbank.model.Customer;
 import com.jlawal.practice.fairfieldbank.repository.CustomerRepository;
 import com.jlawal.practice.fairfieldbank.service.CustomerService;
-import com.jlawal.practice.fairfieldbank.utility.AppStrings;
+import com.jlawal.practice.fairfieldbank.utility.AppValues;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +19,7 @@ public class ConcreteCustomerService implements CustomerService {
 
     @Override
     public Page<Customer> getAllCustomers(int page) {
-        return customerRepository.findAll(PageRequest.of(page, AppStrings.ENTRIES_PER_PAGE.iVal(), Sort.by(AppStrings.CUSTOMER_SORT_BY.val())));
+        return customerRepository.findAll(PageRequest.of(page, AppValues.ENTRIES_PER_PAGE.iVal(), Sort.by(AppValues.CUSTOMER_SORT_BY.val())));
     }
 
     @Override

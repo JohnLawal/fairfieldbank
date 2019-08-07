@@ -15,12 +15,13 @@ public class Account {
     @Column(nullable = false)
     private Float balance = 0.0f;
 
-    @Column(nullable = false)
     @NotNull(message = "Please provide the account type")
+    @OneToOne
+    @JoinColumn(name="account_type_fk")
     private AccountType accountType;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(name="customer_fk")
     private Customer customer;
 
     public Account() {

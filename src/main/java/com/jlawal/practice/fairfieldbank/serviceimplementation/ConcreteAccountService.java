@@ -3,7 +3,7 @@ package com.jlawal.practice.fairfieldbank.serviceimplementation;
 import com.jlawal.practice.fairfieldbank.model.Account;
 import com.jlawal.practice.fairfieldbank.repository.AccountRepository;
 import com.jlawal.practice.fairfieldbank.service.AccountService;
-import com.jlawal.practice.fairfieldbank.utility.AppStrings;
+import com.jlawal.practice.fairfieldbank.utility.AppValues;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -21,7 +21,7 @@ public class ConcreteAccountService implements AccountService {
 
     @Override
     public Page<Account> getAllAccounts(int page) {
-        return accountRepository.findAll(PageRequest.of(page, AppStrings.ENTRIES_PER_PAGE.iVal(), Sort.by(AppStrings.ACCOUNT_SORT_BY.val())));
+        return accountRepository.findAll(PageRequest.of(page, AppValues.ENTRIES_PER_PAGE.iVal(), Sort.by(AppValues.ACCOUNT_SORT_BY.val())));
     }
 
     @Override
