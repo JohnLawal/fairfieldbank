@@ -43,14 +43,12 @@ public class Customer {
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "jnd_cus_acc")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Account> accountList = new ArrayList<>();
 
     public Customer() {
 
     }
-
 
     public Long getCustomerId() {
         return customerId;
@@ -118,6 +116,18 @@ public class Customer {
 
     public String getFullName() {
         return firstName + " " + middleName + " " + lastName;
+    }
+
+    public List<Account> getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
+    }
+
+    public void addAccount(Account account) {
+        accountList.add(account);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.jlawal.practice.fairfieldbank.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,15 +19,20 @@ public class Account {
     @NotNull(message = "Please provide the account type")
     private AccountType accountType;
 
+    @ManyToOne
+    @Column(nullable = false)
+    private Customer customer;
+
     public Account() {
 
     }
 
-    public Account(Long accountId, Long accountNumber, Float balance, AccountType accountType) {
+    public Account(Long accountId, Long accountNumber, Float balance, AccountType accountType, Customer customer) {
         this.accountId = accountId;
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.accountType = accountType;
+        this.customer = customer;
     }
 
     public Long getAccountId() {
@@ -61,5 +65,13 @@ public class Account {
 
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
