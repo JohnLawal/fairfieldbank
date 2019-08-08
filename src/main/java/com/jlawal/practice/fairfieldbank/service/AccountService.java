@@ -13,4 +13,6 @@ public interface AccountService {
 
     Optional<Account> getAccountById(Long accountId);
 
+    boolean hasDefaultRecords();
+
 }

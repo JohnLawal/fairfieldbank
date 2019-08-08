@@ -15,7 +15,7 @@ import java.util.Optional;
 public class ConcreteAccountService implements AccountService {
     private AccountRepository accountRepository;
 
-    public ConcreteAccountService(AccountRepository accountRepository){
+    public ConcreteAccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
@@ -32,5 +32,10 @@ public class ConcreteAccountService implements AccountService {
     @Override
     public Optional<Account> getAccountById(Long accountId) {
         return accountRepository.findById(accountId);
+    }
+
+    @Override
+    public boolean hasDefaultRecords() {
+        return accountRepository.count() > 0;
     }
 }

@@ -31,4 +31,9 @@ public class ConcreteCustomerService implements CustomerService {
     public Optional<Customer> getCustomerById(Long customerId) {
         return customerRepository.findById(customerId);
     }
+
+    @Override
+    public boolean hasDefaultRecords() {
+        return customerRepository.count() > 0;
+    }
 }

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ConcreteAccountType implements AccountTypeService {
+public class ConcreteAccountTypeService implements AccountTypeService {
     @Autowired
     private AccountTypeRepository accountTypeRepository;
 
@@ -30,5 +30,15 @@ public class ConcreteAccountType implements AccountTypeService {
     @Override
     public Optional<AccountType> getAccountTypeById(Long accountTypeId) {
         return accountTypeRepository.findById(accountTypeId);
+    }
+
+    @Override
+    public Optional<AccountType> getAccountTypeByName(String accountTypeName) {
+        return accountTypeRepository.findByAccountTypeNameEquals(accountTypeName);
+    }
+
+    @Override
+    public boolean hasDefaultRecords() {
+        return accountTypeRepository.count() > 0;
     }
 }

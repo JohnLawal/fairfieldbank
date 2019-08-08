@@ -20,16 +20,20 @@ public class Account {
     @JoinColumn(name="account_type_fk")
     private AccountType accountType;
 
-    @ManyToOne
-    @JoinColumn(name="customer_fk")
+    @ManyToOne()
     private Customer customer;
 
     public Account() {
 
     }
 
-    public Account(Long accountId, Long accountNumber, Float balance, AccountType accountType, Customer customer) {
-        this.accountId = accountId;
+    public Account(Long accountNumber, Float balance, AccountType accountType) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.accountType = accountType;
+    }
+
+    public Account(Long accountNumber, Float balance, AccountType accountType, Customer customer) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.accountType = accountType;

@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,16 +39,27 @@ public class Customer {
     @Column(nullable = false)
     private String contactPhoneNumber;
 
-    @NotBlank(message = "Please enter the customer's date of birth")
+    @NotNull(message = "Please enter the customer's date of birth")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="join_cus_acc")
     private List<Account> accountList = new ArrayList<>();
 
-    public Customer() {
 
+    public Customer() {
+    }
+
+    public Customer(Long customerNumber, String firstName, String middleName, String lastName, String emailAddress, String contactPhoneNumber, LocalDate dateOfBirth) {
+        this.customerNumber = customerNumber;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.contactPhoneNumber = contactPhoneNumber;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Long getCustomerId() {

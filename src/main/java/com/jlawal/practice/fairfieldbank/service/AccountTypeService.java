@@ -13,4 +13,8 @@ public interface AccountTypeService {
 
     Optional<AccountType> getAccountTypeById(Long accountTypeId);
 
+    Optional<AccountType> getAccountTypeByName(String accountTypeName);
+
+    boolean hasDefaultRecords();
+
 }

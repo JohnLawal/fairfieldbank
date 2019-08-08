@@ -13,6 +13,10 @@ public class AccountType{
     @NotBlank(message = "Please provide the Account Type Name")
     private String accountTypeName;
 
+    public AccountType(){
+
+    }
+
     public AccountType(String accountTypeName) {
          this.accountTypeName = accountTypeName;
     }
