@@ -16,9 +16,8 @@ public class HomeController {
     public ModelAndView displayHomePage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("pageTitle", "Welcome To Fairfield United Banking Corporation");
-        modelAndView.setViewName(AppValues.HOME_PAGE.val());
-        modelAndView.addObject("siteRoot", AppValues.SITE_ROOT.val());
         modelAndView.addObject("pageLinks", AppHelper.getPageLinks());
+        modelAndView.setViewName(AppValues.HOME_PAGE.val());
         return modelAndView;
     }
 }

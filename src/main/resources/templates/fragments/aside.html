@@ -9,7 +9,7 @@
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
 					<li class="header">MAIN NAVIGATION</li>
-					<li class="treeview"><a th:href="@{${siteRoot}}"><i
+					<li class="treeview"><a th:href="@{${pageLinks.get('siteRoot')}}"><i
 							class="fa fa-dashboard"></i> <span>Home</span></a></li>
 
 					<li class="treeview"><a href="#"><i class="fa fa-money"></i>
@@ -21,7 +21,20 @@
 									class="fa fa-circle-o"></i> <span>View All Accounts</span></a></li>
 							<li><a th:href="@{${pageLinks.get('createAccount')}}"><i
 									class="fa fa-circle-o"></i> <span>Create A New Account</span></a></li>
-						</ul></li>
+						</ul>
+					</li>
+					<li class="treeview"><a href="#"><i class="fa fa-users"></i>
+						<span>Customers</span><span class="pull-right-container"> <i
+								class="fa fa-angle-left pull-right"></i></span></a>
+
+						<ul class="treeview-menu">
+							<li><a th:href="@{${pageLinks.get('viewCustomers')}}"><i
+									class="fa fa-circle-o"></i> <span>View All Customers</span></a></li>
+							<li><a th:href="@{${pageLinks.get('registerCustomer')}}"><i
+									class="fa fa-circle-o"></i> <span>Register A New Customer</span></a></li>
+						</ul>
+					</li>
+
 				</ul>
 			</section>
 			<!-- /.sidebar -->

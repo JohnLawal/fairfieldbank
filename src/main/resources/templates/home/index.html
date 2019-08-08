@@ -18,7 +18,7 @@
             <i class="fa fa-bank"></i> <span th:text="${pageTitle}"></span>
         </h1>
         <ol class="breadcrumb">
-            <li><a th:href="@{${siteroot}}"><i class="fa fa-home"></i>
+            <li><a th:href="@{${pageLinks.get('siteRoot')}}"><i class="fa fa-home"></i>
                 Home</a></li>
             <li class="active" th:text="${pageTitle}"></li>
         </ol>
@@ -32,19 +32,16 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body table-responsive">
-                        <h1>Welcome To Fairfield United Banking Corporation</h1>
-                        <p>This system was developed by John Lawal</p>
-                        On this system, you can view the <a
-                            th:href="@{${pageLinks.get('viewCustomers')}}">List of Current
-                        Registered Customers</a>, view the <a
-                            th:href="@{${pageLinks.get('viewAccounts')}}">List of Created Accounts</a>
+                        <h1>Welcome, Bank Manager</h1>
+                        <p>On this system, you can view the <a
+                                th:href="@{${pageLinks.get('viewCustomers')}}">List of Current
+                            Registered Customers</a>, view the <a
+                                th:href="@{${pageLinks.get('viewAccounts')}}">List of Created Accounts</a>.</p>
                         <p>
                             You can also <a th:href="@{${pageLinks.get('createAccount')}}">Create A New Account
                             for a Customer</a>
                         </p>
-						<p>For more features, click on any item on the menu</p>
-
-
+                        <p>For more features, click on any item on the menu</p>
                     </div>
                     <!-- /.box-body -->
                 </div>
