@@ -46,7 +46,7 @@
                                     <label for="customerId">Customer</label>
                                     <select id="customerId"
                                             th:value="${account.customer.customerNumber}" name="customer.customerNumber"
-                                            class="form-control form-control-line" required>
+                                            class="form-control form-control-line select2" required>
                                         <option th:each="customer : ${customers}"
                                                 th:value="${customer.customerNumber}"
                                                 th:text="${customer.fullName} + ' - '+ ${customer.customerNumber}"></option>
@@ -58,7 +58,7 @@
                                     <label for="accountTypeId">Account Type</label>
                                     <select id="accountTypeId"
                                             th:value="${account.accountType.accountTypeId}" name="accountType.accountTypeId"
-                                            class="form-control form-control-line" required>
+                                            class="form-control form-control-line select2" required>
                                         <option th:each="accountType : ${accountTypes}"
                                                 th:value="${accountType.accountTypeId}"
                                                 th:text="${accountType.accountTypeName}"></option>
