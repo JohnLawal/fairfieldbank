@@ -12,15 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class AccountController {
@@ -56,13 +54,30 @@ public class AccountController {
         return modelAndView;
     }
 
+    @GetMapping(value = {"/fairfieldbank/accounts/new/{customerNumber}"})
+    public ModelAndView getNewAccountCreationPageForSelectedCustomer(@PathVariable Long customerNumber) {
+        Optional<Customer> customer = concreteCustomerService.getCustomerByCustomerNumber(customerNumber);
+        if(customer.isPresent()){
+            Account account = new Account();
+            account.setCustomer(customer.get());
+            account.setAccountType(new AccountType());
+
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.addAllObjects(getModelMap());
+            modelAndView.addObject("account", account);
+            modelAndView.setViewName(AppValues.NEW_ACCOUNT_PAGE.val());
+            return modelAndView;
+        }else{
+            return getNewAccountCreationPage();
+        }
+
+    }
+
     @PostMapping(value = {"/fairfieldbank/accounts/new"})
     public String createNewAccount(@Valid @ModelAttribute("account") Account account, BindingResult bindingResult, Model model) {
         if (!bindingResult.hasErrors()) {
             try {
                 //create the account
-                System.out.println(account.getCustomer());
-                System.out.println(account.getAccountType());
                 Long customerNumber = account.getCustomer().getCustomerNumber();
                 Customer owningCustomer = concreteCustomerService.getCustomerByCustomerNumber(customerNumber).get();
 
@@ -74,6 +89,7 @@ public class AccountController {
                 account.setCustomer(owningCustomer);
 
                 owningCustomer.addAccount(account);
+                //account will be inserted when customer is persisted
                 concreteCustomerService.saveCustomer(owningCustomer);
 
                 return AppValues.REDIRECT.val() + AppHelper.pageLinks.get("viewAccounts");

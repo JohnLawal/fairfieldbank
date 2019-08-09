@@ -47,7 +47,7 @@
                                     <select id="customerId"
                                             th:value="${account.customer.customerNumber}" name="customer.customerNumber"
                                             class="form-control form-control-line select2" required>
-                                        <option th:each="customer : ${customers}"
+                                        <option th:each="customer : ${customers}"  th:selected="${account.customer.customerNumber != null && account.customer.customerNumber ==  customer.customerNumber}"
                                                 th:value="${customer.customerNumber}"
                                                 th:text="${customer.fullName} + ' - '+ ${customer.customerNumber}"></option>
                                     </select>
