@@ -43,12 +43,13 @@
                               method="post" role="form">
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <label for="customerId">Customer Name</label>
+                                    <label for="customerId">Customer</label>
                                     <select id="customerId"
-                                            th:value="${account.customer.customerNumber}" name="customerNumber"
+                                            th:value="${account.customer.customerNumber}" name="customer.customerNumber"
                                             class="form-control form-control-line" required>
                                         <option th:each="customer : ${customers}"
-                                                th:value="${customer.customerNumber}" th:text="${customer.fullName}"></option>
+                                                th:value="${customer.customerNumber}"
+                                                th:text="${customer.fullName} + ' - '+ ${customer.customerNumber}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -56,10 +57,11 @@
                                 <div class="col-xs-12">
                                     <label for="accountTypeId">Account Type</label>
                                     <select id="accountTypeId"
-                                            th:value="${account.accountType.accountTypeId}" name="accountType"
+                                            th:value="${account.accountType.accountTypeId}" name="accountType.accountTypeId"
                                             class="form-control form-control-line" required>
                                         <option th:each="accountType : ${accountTypes}"
-                                                th:value="${accountType.accountTypeId}" th:text="${accountType.accountTypeName}"></option>
+                                                th:value="${accountType.accountTypeId}"
+                                                th:text="${accountType.accountTypeName}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -68,7 +70,8 @@
                                     <label for="balance">Opening Balance</label> <span
                                         th:if="${#fields.hasErrors('balance')}"
                                         th:errors="*{balance}" class="alert alert-danger"></span> <input
-                                        class="form-control form-control-line" required type="number" min="100" step="0.01"
+                                        class="form-control form-control-line" required type="number" min="100"
+                                        step="0.01"
                                         name="balance" id="balance"
                                         th:value="${account.balance}"
                                         placeholder="e.g 200.50">

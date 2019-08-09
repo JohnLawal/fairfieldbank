@@ -34,8 +34,18 @@ public class ConcreteCustomerService implements CustomerService {
     }
 
     @Override
+    public void saveCustomer(Customer customer) {
+        customerRepository.save(customer);
+    }
+
+    @Override
     public Optional<Customer> getCustomerById(Long customerId) {
         return customerRepository.findById(customerId);
+    }
+
+    @Override
+    public Optional<Customer> getCustomerByCustomerNumber(Long customerNumber) {
+        return customerRepository.findCustomerByCustomerNumberEquals(customerNumber);
     }
 
     @Override

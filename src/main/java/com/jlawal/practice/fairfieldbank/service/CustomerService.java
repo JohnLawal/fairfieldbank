@@ -14,7 +14,11 @@ public interface CustomerService {
 
     void createCustomer(Customer customer);
 
+    void saveCustomer(Customer customer);
+
     Optional<Customer> getCustomerById(Long customerId);
+
+    Optional<Customer> getCustomerByCustomerNumber(Long customerNumber);
 
     boolean hasDefaultRecords();
 

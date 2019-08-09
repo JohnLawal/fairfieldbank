@@ -9,7 +9,7 @@ import java.util.Objects;
 public class AccountType{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer accountTypeId;
+    private Long accountTypeId;
     @NotBlank(message = "Please provide the Account Type Name")
     private String accountTypeName;
 
@@ -21,11 +21,11 @@ public class AccountType{
          this.accountTypeName = accountTypeName;
     }
 
-    public Integer getAccountTypeId() {
+    public Long getAccountTypeId() {
         return accountTypeId;
     }
 
-    public void setAccountTypeId(Integer accountTypeId) {
+    public void setAccountTypeId(Long accountTypeId) {
         this.accountTypeId = accountTypeId;
     }
 
