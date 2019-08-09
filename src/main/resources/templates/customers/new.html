@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head}">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- include header fragment -->
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<!-- include aside fragment -->
+<div th:replace="~{fragments/aside :: aside}"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-user"></i> <span th:text="${pageTitle}"></span>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a th:href="@{${pageLinks.siteRoot}}"><i class="fa fa-home"></i> Home</a></li>
+            <li class="active" th:text="${pageTitle}"></li>
+        </ol>
+
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- row -->
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="row" th:if="${registrationException} != ${null}">
+                    <div class="col-md-12">
+							<span
+                                    th:text="${registrationException} " class="alert alert-danger">
+							</span>
+                    </div>
+                </div>
+                <div class="box box-primary">
+                    <div class="box-body table-responsive">
+                        <form id="newCustomerForm" class="form-horizontal form-material"
+                              th:action="@{${pageLinks.registerCustomer}}" th:object="${customer}"
+                              method="post" role="form">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="firstName">First Name</label> <span
+                                        th:if="${#fields.hasErrors('firstName')}"
+                                        th:errors="*{firstName}" class="alert alert-danger"></span> <input
+                                        class="form-control form-control-line" required type="text"
+                                        name="firstName" id="firstName"
+                                        th:value="${customer.firstName}"
+                                        placeholder="e.g John">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="middleName">Middle Name</label> <span
+                                        th:if="${#fields.hasErrors('middleName')}"
+                                        th:errors="*{middleName}" class="alert alert-danger"></span>
+                                    <input class="form-control form-control-line" type="text"
+                                           value="" name="middleName"
+                                           placeholder="e.g Imhonikhe" id="middleName"
+                                           th:value="${customer.middleName}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="lastName">Last Name</label> <span
+                                        th:if="${#fields.hasErrors('lastName')}"
+                                        th:errors="*{lastName}" class="alert alert-danger"></span> <input
+                                        class="form-control form-control-line" required type="text"
+                                        name="lastName" value="" placeholder="Last Name e.g Lawal"
+                                        id="lastName" th:value="${customer.lastName}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="lastName">Email Address</label> <span
+                                        th:if="${#fields.hasErrors('emailAddress')}"
+                                        th:errors="*{emailAddress}" class="alert alert-danger"></span> <input
+                                        class="form-control form-control-line" required type="email"
+                                        name="emailAddress" value="" placeholder="e.g me@jlawal.com"
+                                        id="emailAddress" th:value="${customer.emailAddress}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="lastName">Phone Number</label> <span
+                                        th:if="${#fields.hasErrors('contactPhoneNumber')}"
+                                        th:errors="*{contactPhoneNumber}" class="alert alert-danger"></span> <input
+                                        class="form-control form-control-line" required type="tel" pattern="^\(\d{3}\) \d{3}-\d{4}$"
+                                        name="contactPhoneNumber" value="" placeholder="e.g (641) 451-3981"
+                                        id="contactPhoneNumber" th:value="${customer.contactPhoneNumber}">
+                                </div>
+                            </div>
+                            <!-- Date -->
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label>Date of Birth:</label>
+                                    <div class="input-group date">
+											<span th:if="${#fields.hasErrors('dateOfBirth')}"
+                                                  th:errors="*{dateOfBirth}" class="alert alert-danger"></span>
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input autocomplete="false" required type="date"
+                                               name="dateOfBirth" class="form-control pull-right"
+                                               id="dateOfBirth" th:value="${customer.dateOfBirth}">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                            </div>
+                            <!-- /.form group -->
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary ">Register Customer</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- include footer fragment -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

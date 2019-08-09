@@ -36,4 +36,9 @@ public class ConcreteCustomerService implements CustomerService {
     public boolean hasDefaultRecords() {
         return customerRepository.count() > 0;
     }
+
+    @Override
+    public Long getNextAvailableCustomerNumber() {
+        return (customerRepository.getLastRegisteredCustomerNumber() + 1);
+    }
 }

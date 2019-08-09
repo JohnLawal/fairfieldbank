@@ -15,7 +15,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i class="fa fa-user"></i> <span th:text="${pageTitle}"></span>
+            <i class="fa fa-money"></i> <span th:text="${pageTitle}"></span>
         </h1>
         <ol class="breadcrumb">
             <li><a th:href="@{${pageLinks.siteRoot}}"><i class="fa fa-home"></i>
@@ -29,8 +29,8 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <a style="margin: 10px" th:href="@{${pageLinks.registerCustomer}}"
-                   class="btn btn-warning">Register A Customer</a>
+                <a style="margin: 10px" th:href="@{${pageLinks.createAccount}}"
+                   class="btn btn-warning">Create An Account</a>
             </div>
         </div>
         <!-- row -->
@@ -42,35 +42,35 @@
                                class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Customer Number</th>
-                                <th>First Name</th>
-                                <th>Middle Name</th>
-                                <th>Last Name</th>
-                                <th>Email Address</th>
-                                <th>Phone Number</th>
-                                <th>Date of Birth</th>
+                                <th>S/N</th>
+                                <th>Account Number</th>
+                                <th>Balance</th>
+                                <th>Account Type</th>
+                                <th>Owning Customer</th>
+
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="customer : ${customers}">
-                                <td class="mailbox-name" th:text="${customer.customerNumber}"></td>
-                                <td class="mailbox-name" th:text="${customer.firstName}"></td>
-                                <td class="mailbox-name" th:text="${customer.middleName}"></td>
-                                <td class="mailbox-name" th:text="${customer.lastName}"></td>
-                                <td class="mailbox-name" th:text="${customer.emailAddress}"></td>
-                                <td class="mailbox-name" th:text="${customer.contactPhoneNumber}"></td>
-                                <td class="mailbox-name" th:text="${customer.dateOfBirth}"></td>
+                            <tr th:each="account,iterStat : ${accounts}">
+                                <th scope="row" th:text="${iterStat.count}"></th>
+                                <td class="mailbox-name" th:text="${account.accountNumber}"></td>
+                                <td class="mailbox-name" th:text="${account.balanceAsMoney}"></td>
+                                <td class="mailbox-name" th:text="${account.accountType.accountTypeName}"></td>
+                                <td class="mailbox-name"
+                                    th:text="${account.customer.fullName}"></td>
                             </tr>
                             </tbody>
                         </table>
                         <div class="btn-group" style="float: right;margin: 8px;">
                             <button type="button" class="btn btn-default">Pages:</button>
-                            <a type="button" th:each="i : ${#numbers.sequence(1, customers.totalPages)}"
+                            <a type="button" th:each="i : ${#numbers.sequence(1, accounts.totalPages)}"
                                th:class="${currentPageNo}==${i-1}?'btn btn-primary':'btn btn-default'"
-                               th:href="@{${pageLinks.viewCustomers}(page=${i-1})}"
+                               th:href="@{${pageLinks.viewAccounts}(page=${i-1})}"
                                th:text="${i}">
                             </a>
                         </div>
+                        <hr>
+                        <h3>Current Net Liquidity: <span th:text="${netLiquidity}"></span></h3>
                     </div>
 
                     <!-- /.box-body -->

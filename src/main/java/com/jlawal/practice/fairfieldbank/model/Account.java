@@ -2,6 +2,7 @@ package com.jlawal.practice.fairfieldbank.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.text.NumberFormat;
 
 @Entity
 @Table(name = "accounts")
@@ -13,7 +14,7 @@ public class Account {
     private Long accountNumber;
 
     @Column(nullable = false)
-    private Float balance = 0.0f;
+    private Double balance = 0.0;
 
     @NotNull(message = "Please provide the account type")
     @OneToOne
@@ -27,13 +28,13 @@ public class Account {
 
     }
 
-    public Account(Long accountNumber, Float balance, AccountType accountType) {
+    public Account(Long accountNumber, Double balance, AccountType accountType) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.accountType = accountType;
     }
 
-    public Account(Long accountNumber, Float balance, AccountType accountType, Customer customer) {
+    public Account(Long accountNumber, Double balance, AccountType accountType, Customer customer) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.accountType = accountType;
@@ -56,11 +57,11 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public Float getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Float balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
@@ -78,5 +79,10 @@ public class Account {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public String getBalanceAsMoney(){
+        NumberFormat usaFormat = NumberFormat.getCurrencyInstance();
+        return usaFormat.format(balance);
     }
 }

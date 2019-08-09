@@ -15,4 +15,10 @@ public interface AccountService {
 
     boolean hasDefaultRecords();
 
+    Double computeNetLiquidity();
+
+    String getNetLiquidityAsMoney();
+
+    Long getNextAvailableAccountNumber();
+
 }

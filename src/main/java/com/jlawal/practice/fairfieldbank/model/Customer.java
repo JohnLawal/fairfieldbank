@@ -17,7 +17,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerId;
 
-    @Column(nullable = false)
+    @Column
     private Long customerNumber;
 
     @NotBlank(message = "Please enter the customer's first name")

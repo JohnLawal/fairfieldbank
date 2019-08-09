@@ -18,7 +18,7 @@
             <i class="fa fa-bank"></i> <span th:text="${pageTitle}"></span>
         </h1>
         <ol class="breadcrumb">
-            <li><a th:href="@{${pageLinks.get('siteRoot')}}"><i class="fa fa-home"></i>
+            <li><a th:href="@{${pageLinks.siteRoot}}"><i class="fa fa-home"></i>
                 Home</a></li>
             <li class="active" th:text="${pageTitle}"></li>
         </ol>
@@ -34,11 +34,11 @@
                     <div class="box-body table-responsive">
                         <h3>Welcome, Bank Manager</h3>
                         <p>On this system, you can view the <a
-                                th:href="@{${pageLinks.get('viewCustomers')}}">List of Current
+                                th:href="@{${pageLinks.viewCustomers}}">List of Current
                             Registered Customers</a>, view the <a
-                                th:href="@{${pageLinks.get('viewAccounts')}}">List of Created Accounts</a>.</p>
+                                th:href="@{${pageLinks.viewAccounts}}">List of Existing Accounts</a>.</p>
                         <p>
-                            You can also <a th:href="@{${pageLinks.get('createAccount')}}">Create A New Account
+                            You can also <a th:href="@{${pageLinks.createAccount}}">Create A New Account
                             for a Customer</a>
                         </p>
                         <p>For more features, click on any item on the menu</p>

@@ -42,9 +42,9 @@ public class FairfieldbankApplication implements CommandLineRunner {
         }
 
         if (!concreteAccountService.hasDefaultRecords() || !concreteCustomerService.hasDefaultRecords()) {
-            Account account1 = new Account(100001L, 100590.96F, concreteAccountTypeService.getAccountTypeByName("Savings").orElse(null));
-            Account account2 = new Account(100002L, 70000.00F, concreteAccountTypeService.getAccountTypeByName("Loan").orElse(null));
-            Account account3 = new Account(100003L, 314005.25F, concreteAccountTypeService.getAccountTypeByName("Checking").orElse(null));
+            Account account1 = new Account(100001L, 100590.96, concreteAccountTypeService.getAccountTypeByName("Savings").orElse(null));
+            Account account2 = new Account(100002L, 70000.00, concreteAccountTypeService.getAccountTypeByName("Loan").orElse(null));
+            Account account3 = new Account(100003L, 314005.25, concreteAccountTypeService.getAccountTypeByName("Checking").orElse(null));
 
             Customer customer1 = new Customer(10001L, "Anna", "", "Smith", "asmith@gmail.net", "(641) 451-0001", LocalDate.of(1978, 5, 21));
             Customer customer2 = new Customer(10002L, "Bob", "Earl", "Jones", "bob.e.jones@earthlink.org", "(319) 001-0001", LocalDate.of(1964, 12, 7));

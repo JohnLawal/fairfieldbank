@@ -14,4 +14,6 @@ public interface CustomerService {
     Optional<Customer> getCustomerById(Long customerId);
 
     boolean hasDefaultRecords();
+
+    Long getNextAvailableCustomerNumber();
 }

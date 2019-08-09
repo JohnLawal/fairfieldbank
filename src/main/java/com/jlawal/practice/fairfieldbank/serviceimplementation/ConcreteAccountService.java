@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.text.NumberFormat;
 import java.util.Optional;
 
 @Service
@@ -38,4 +39,26 @@ public class ConcreteAccountService implements AccountService {
     public boolean hasDefaultRecords() {
         return accountRepository.count() > 0;
     }
+
+    @Override
+    public Double computeNetLiquidity() {
+        Double sumOfSavingsAccountsBalances = accountRepository.getSumOfBalancesForAccountTypeWithName(AppValues.SAVINGS_ACCOUNT_TYPE_NAME.val());
+        Double sumOfCheckingAccountsBalances = accountRepository.getSumOfBalancesForAccountTypeWithName(AppValues.CHECKING_ACCOUNT_TYPE_NAME.val());
+        Double sumOfLoanAccountsBalances = accountRepository.getSumOfBalancesForAccountTypeWithName(AppValues.LOAN_ACCOUNT_TYPE_NAME.val());
+        return (sumOfSavingsAccountsBalances + sumOfCheckingAccountsBalances) - sumOfLoanAccountsBalances;
+    }
+
+    @Override
+    public String getNetLiquidityAsMoney() {
+        Double netLiquidity = computeNetLiquidity();
+        NumberFormat usaFormat = NumberFormat.getCurrencyInstance();
+        return usaFormat.format(netLiquidity);
+    }
+
+    @Override
+    public Long getNextAvailableAccountNumber() {
+        return (accountRepository.getLastCreatedAccountNumber() + 1);
+    }
+
+
 }
