@@ -26,7 +26,7 @@ public class CustomerController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("pageTitle", "Registered Customers");
         modelAndView.addObject("pageLinks", AppHelper.pageLinks);
-        modelAndView.addObject("customers", concreteCustomerService.getAllCustomers(page));
+        modelAndView.addObject("customers", concreteCustomerService.getAllCustomersPaged(page));
         modelAndView.addObject("currentPageNo", page);
         modelAndView.setViewName(AppValues.VIEW_CUSTOMERS_PAGE.val());
         return modelAndView;

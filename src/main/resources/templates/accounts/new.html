@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head}">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- include header fragment -->
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<!-- include aside fragment -->
+<div th:replace="~{fragments/aside :: aside}"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-user"></i> <span th:text="${pageTitle}"></span>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a th:href="@{${pageLinks.siteRoot}}"><i class="fa fa-home"></i> Home</a></li>
+            <li class="active" th:text="${pageTitle}"></li>
+        </ol>
+
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- row -->
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="row" th:if="${creationException} != ${null}">
+                    <div class="col-md-12">
+							<span
+                                    th:text="${creationException} " class="alert alert-danger">
+							</span>
+                    </div>
+                </div>
+                <div class="box box-primary">
+                    <div class="box-body table-responsive">
+                        <form id="newCustomerForm" class="form-horizontal form-material"
+                              th:action="@{${pageLinks.createAccount}}" th:object="${account}"
+                              method="post" role="form">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="customerId">Customer Name</label>
+                                    <select id="customerId"
+                                            th:value="${account.customer.customerNumber}" name="customerNumber"
+                                            class="form-control form-control-line" required>
+                                        <option th:each="customer : ${customers}"
+                                                th:value="${customer.customerNumber}" th:text="${customer.fullName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="accountTypeId">Account Type</label>
+                                    <select id="accountTypeId"
+                                            th:value="${account.accountType.accountTypeId}" name="accountType"
+                                            class="form-control form-control-line" required>
+                                        <option th:each="accountType : ${accountTypes}"
+                                                th:value="${accountType.accountTypeId}" th:text="${accountType.accountTypeName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="balance">Opening Balance</label> <span
+                                        th:if="${#fields.hasErrors('balance')}"
+                                        th:errors="*{balance}" class="alert alert-danger"></span> <input
+                                        class="form-control form-control-line" required type="number" min="100" step="0.01"
+                                        name="balance" id="balance"
+                                        th:value="${account.balance}"
+                                        placeholder="e.g 200.50">
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary ">Create Account</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- include footer fragment -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

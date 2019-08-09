@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,7 +19,12 @@ public class ConcreteCustomerService implements CustomerService {
     private CustomerRepository customerRepository;
 
     @Override
-    public Page<Customer> getAllCustomers(int page) {
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll(Sort.by("customerNumber"));
+    }
+
+    @Override
+    public Page<Customer> getAllCustomersPaged(int page) {
         return customerRepository.findAll(PageRequest.of(page, AppValues.ENTRIES_PER_PAGE.iVal(), Sort.by(AppValues.CUSTOMER_SORT_BY.val())));
     }
 

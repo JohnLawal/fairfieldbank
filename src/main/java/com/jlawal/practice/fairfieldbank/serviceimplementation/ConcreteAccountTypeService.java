@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,8 +19,13 @@ public class ConcreteAccountTypeService implements AccountTypeService {
     private AccountTypeRepository accountTypeRepository;
 
     @Override
-    public Page<AccountType> getAllAccountTypes(int page) {
+    public Page<AccountType> getAllAccountTypesPaged(int page) {
         return accountTypeRepository.findAll(PageRequest.of(page, AppValues.ENTRIES_PER_PAGE.iVal(), Sort.by(AppValues.ACCOUNT_TYPE_SORT_BY.val())));
+    }
+
+    @Override
+    public List<AccountType> getAllAccountTypes() {
+        return accountTypeRepository.findAll(Sort.by(AppValues.ACCOUNT_TYPE_SORT_BY.val()));
     }
 
     @Override
